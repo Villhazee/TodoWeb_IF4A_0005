@@ -22,7 +22,16 @@ btnTambah.addEventListener("click", function () {
         <strong>${teksTugas}</strong><br>
         Tanggal: ${tanggalTugas}<br>
         Status: <span class="status">${statusTugas}</span>
-    `;;
+    `;
+
+    let btnEdit = document.createElement("button");
+      btnEdit.innetHTML = "Edit" ;
+
+      btnEdit.addEventListener("click", function (){
+        
+      })
+
+
 
 
 
