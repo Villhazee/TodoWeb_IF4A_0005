@@ -28,8 +28,36 @@ btnTambah.addEventListener("click", function () {
       btnEdit.innetHTML = "Edit" ;
 
       btnEdit.addEventListener("click", function (){
-        
-      })
+        let tugasBaru = prompt("Edit tugas:", teksTugas);
+
+        if (tugasBaru !== null && tugasBaru !== "") {
+            teksTugas = tugasBaru;
+
+            infoTugas.innerHTML = `
+                <strong>${teksTugas}</strong><br>
+                Tanggal: ${tanggalTugas}<br>
+                Status: <span class="status">${statusTugas}</span>
+            `;
+        }
+    });
+
+    let btnStatus = document.createElement("button");
+    btnStatus.innerHTML = "Ubah Status";
+
+    btnStatus.addEventListener("click", function () {
+
+        if (statusTugas === "Progress") {
+            statusTugas = "Done";
+        } else {
+            statusTugas = "Progress";
+        }
+
+        infoTugas.innerHTML = `
+            <strong>${teksTugas}</strong><br>
+            Tanggal: ${tanggalTugas}<br>
+            Status: <span class="status">${statusTugas}</span>
+        `;
+    });
 
 
 
