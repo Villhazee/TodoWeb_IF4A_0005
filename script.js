@@ -67,6 +67,22 @@ btnTambah.addEventListener("click", function () {
         daftarTugas.removeChild(listBaru);
     });
 
+    let action = document.createElement("div");
+
+    action.appendChild(btnEdit);
+    action.appendChild(btnStatus);
+    action.appendChild(btnHapus);
+
+    listBaru.appendChild(infoTugas);
+    listBaru.appendChild(action);
+
+    daftarTugas.appendChild(listBaru);
+
+    inputTugas.value = "";
+    inputTanggal.value = "";
+    inputStatus.value = "Progress";
+});
+
 
 
 
