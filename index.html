@@ -1,45 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List App</title>
-
     <link rel="stylesheet" href="style.css">
-</head> 
+</head>
 <body>
 
-     <div class="card">
-        <h1>Todo List App</h1>
+    <div class="wrapper">
+        <div class="card">
+            <div class="card-header">
+                <h1>Todo List</h1>
+            </div>
 
-        <div class="form">
-            <input type="text" id="inputTugas" placeholder="Enter a task">
+            <div class="form">
+                <div class="input-group">
+                    <label>Tugas</label>
+                    <input type="text" id="inputTugas" placeholder="Masukkan nama tugas...">
+                </div>
+                <div class="row-group">
+                    <div class="input-group">
+                        <label>Tanggal</label>
+                        <input type="date" id="inputTanggal">
+                    </div>
+                    <div class="input-group">
+                        <label>Status</label>
+                        <select id="inputStatus">
+                            <option value="Progress">⏳ Progress</option>
+                            <option value="Done">✅ Done</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="btnTambah">+ Tambah Tugas</button>
+            </div>
 
-            <input type="date" id="inputTanggal">
+            <div class="list-header">
+                <h3>Daftar Tugas</h3>
+                <span id="counterBadge" class="badge">0</span>
+            </div>
 
-            <select id="inputStatus">
-                <option value="Progress">Progress</option>
-                <option value="Done">Done</option>
-            </select>
-
-            <button id="btnTambah">Tambah data</button>
-
+            <ul id="daftarTugas">
+                <li class="empty-state" id="emptyState">
+                    <span>📋</span>
+                    <p>Tambahkan Tugas!</p>
+                </li>
+            </ul>
         </div>
+    </div>
 
-        <h3>Daftar Tugas</h3>
-        <ul id="daftarTugas"></ul>
-
-     </div>
-
-     <script src="script.js"></script>
-
-       
-
-
-
-
-
-
-    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="script.js"></script>
 </body>
 </html>
