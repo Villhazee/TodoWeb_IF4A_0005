@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -50,7 +50,6 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== CARD HEADER ===== */
 .card-header {
     text-align: center;
     margin-bottom: 28px;
@@ -75,7 +74,6 @@ body {
     margin-top: 4px;
 }
 
-/* ===== FORM ===== */
 .form {
     display: flex;
     flex-direction: column;
@@ -168,7 +166,6 @@ input:focus, select:focus {
     text-align: center;
 }
 
-/* ===== TASK LIST ===== */
 #daftarTugas {
     list-style: none;
     display: flex;
@@ -176,7 +173,6 @@ input:focus, select:focus {
     gap: 10px;
 }
 
-/* ===== EMPTY STATE ===== */
 .empty-state {
     text-align: center;
     padding: 32px 0;
@@ -186,7 +182,6 @@ input:focus, select:focus {
 .empty-state span { font-size: 32px; display: block; margin-bottom: 8px; }
 .empty-state p { font-size: 0.85rem; }
 
-/* ===== TASK ITEM ===== */
 li.task-item {
     background: #f8fafc;
     border: 1.5px solid var(--border);
@@ -240,7 +235,6 @@ li.task-item:hover {
     color: #065f46;
 }
 
-/* ===== ACTION BUTTONS ===== */
 .task-actions {
     display: flex;
     flex-direction: column;

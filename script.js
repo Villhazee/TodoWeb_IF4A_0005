@@ -1,14 +1,29 @@
-const inputTugas = document.getElementById("inputTugas");
-const inputTanggal = document.getElementById("inputTanggal");
-const inputStatus = document.getElementById("inputStatus");
-const btnTambah = document.getElementById("btnTambah");
-const daftarTugas = document.getElementById("daftarTugas");
+$(document).ready(function(){
 
-btnTambah.addEventListener("click", function () {
+    const $inputTugas = $("inputTugas");
+    const $inputTanggal = $("inputTanggal");
+    const $inputStatus = $("inputStatus");
+    const $daftarTugas = $("daftarTugas");
+    function updateCounter() {
+   
+        const jumlah = $daftarTugas.find("li.task-item").length;
+ 
+        $("#counterBadge").text(jumlah);
 
-    let teksTugas = inputTugas.value;
-    let tanggalTugas = inputTanggal.value;
-    let statusTugas = inputStatus.value;
+        if (jumlah === 0) {
+
+            $("#emptyState").show();
+        } else {
+            $("#emptyState").hide();
+        }
+    }
+
+
+ $ ("#btnTambah").on("click", function) {
+
+   const teksTugas = $inputTugas.val().trim();
+   const tanggalTugas = $inputTanggal.val();
+   const statusTugas = $inputStatus.val();
 
     if (teksTugas === "" || tanggalTugas === "") {
         alert("Semua data harus diisi!");
