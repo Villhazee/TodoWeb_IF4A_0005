@@ -5,7 +5,6 @@ $(function () {
     let $inputStatus = $("#inputStatus");
     let $daftarTugas = $("#daftarTugas");
 
-    // Update jumlah tugas
     function updateCounter() {
         let jumlah = $(".task-item").length;
 
@@ -18,7 +17,6 @@ $(function () {
         }
     }
 
-    // Tombol tambah
     $("#btnTambah").click(function () {
 
         let tugas = $inputTugas.val().trim();
