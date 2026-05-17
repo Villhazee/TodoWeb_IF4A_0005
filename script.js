@@ -1,104 +1,144 @@
-$(document).ready(function(){
+$(function () {
 
-    const $inputTugas = $("inputTugas");
-    const $inputTanggal = $("inputTanggal");
-    const $inputStatus = $("inputStatus");
-    const $daftarTugas = $("daftarTugas");
+    let $inputTugas = $("#inputTugas");
+    let $inputTanggal = $("#inputTanggal");
+    let $inputStatus = $("#inputStatus");
+    let $daftarTugas = $("#daftarTugas");
+
+    // Update jumlah tugas
     function updateCounter() {
-   
-        const jumlah = $daftarTugas.find("li.task-item").length;
- 
+        let jumlah = $(".task-item").length;
+
         $("#counterBadge").text(jumlah);
 
         if (jumlah === 0) {
-
             $("#emptyState").show();
         } else {
             $("#emptyState").hide();
         }
     }
 
+    // Tombol tambah
+    $("#btnTambah").click(function () {
 
- $ ("#btnTambah").on("click", function) {
+        let tugas = $inputTugas.val().trim();
+        let tanggal = $inputTanggal.val();
+        let status = $inputStatus.val();
 
-   const teksTugas = $inputTugas.val().trim();
-   const tanggalTugas = $inputTanggal.val();
-   const statusTugas = $inputStatus.val();
-
-    if (teksTugas === "" || tanggalTugas === "") {
-        alert("Semua data harus diisi!");
-        return;
-    }
-
-    let listBaru = document.createElement("li");
-    let infoTugas = document.createElement("div");
-
-    infoTugas.innerHTML = `
-        <strong>${teksTugas}</strong><br>
-        Tanggal: ${tanggalTugas}<br>
-        Status: <span class="status">${statusTugas}</span>
-    `;
-
-    let btnEdit = document.createElement("button");
-      btnEdit.innetHTML = "Edit" ;
-
-      btnEdit.addEventListener("click", function (){
-        let tugasBaru = prompt("Edit tugas:", teksTugas);
-
-        if (tugasBaru !== null && tugasBaru !== "") {
-            teksTugas = tugasBaru;
-
-            infoTugas.innerHTML = `
-                <strong>${teksTugas}</strong><br>
-                Tanggal: ${tanggalTugas}<br>
-                Status: <span class="status">${statusTugas}</span>
-            `;
-        }
-    });
-
-    let btnStatus = document.createElement("button");
-    btnStatus.innerHTML = "Ubah Status";
-
-    btnStatus.addEventListener("click", function () {
-
-        if (statusTugas === "Progress") {
-            statusTugas = "Done";
-        } else {
-            statusTugas = "Progress";
+        if (tugas === "" || tanggal === "") {
+            alert("Semua data harus diisi!");
+            return;
         }
 
-        infoTugas.innerHTML = `
-            <strong>${teksTugas}</strong><br>
-            Tanggal: ${tanggalTugas}<br>
-            Status: <span class="status">${statusTugas}</span>
-        `;
+        let item = $(`
+            <li class="task-item">
+
+                <div class="task-info">
+                    <div class="task-top">
+                        <div class="task-info">
+                            <strong>${tugas}</strong>
+                        </div>
+
+                        <span class="status-badge ${status=="Done" ? "done":"progress"}">
+                            ${status}
+                        </span>
+
+                    </div>
+
+                    <div class="task-meta">${tanggal}</div>
+
+                    <div class="task-divider"></div>
+
+                </div>
+
+                <div class="task-actions">
+
+                    <button class="btn-edit">
+                        Edit
+                    </button>
+
+                    <button class="btn-status">
+                        Status
+                    </button>
+
+                    <button class="btn-hapus">
+                        Hapus
+                    </button>
+
+                </div>
+
+            </li>
+        `);
+
+        item.find(".btn-edit").click(function () {
+
+            let edit = prompt(
+                "Edit tugas:",
+                tugas
+            );
+
+            if(edit && edit.trim()!=""){
+
+                tugas=edit;
+
+                item.find("strong")
+                .text(tugas);
+            }
+
+        });
+
+        item.find(".btn-status").click(function(){
+
+            status=
+            status=="Progress"
+            ? "Done"
+            : "Progress";
+
+            let badge=
+            item.find(".status-badge");
+
+            badge
+            .text(status)
+            .removeClass(
+                "done progress"
+            )
+            .addClass(
+                status=="Done"
+                ? "done"
+                : "progress"
+            );
+
+        });
+
+        item.find(".btn-hapus")
+        .click(function(){
+
+            item.remove();
+            updateCounter();
+
+        });
+
+        $daftarTugas.append(item);
+
+        $inputTugas.val("");
+        $inputTanggal.val("");
+        $inputStatus.val("Progress");
+
+        updateCounter();
+
     });
 
-    let btnHapus = document.createElement("button");
-    btnHapus.innerHTML = "Hapus";
-    btnHapus.classList.add("hapus");
+    $inputTugas.keypress(function(e){
 
-    btnHapus.addEventListener("click", function () {
-        daftarTugas.removeChild(listBaru);
+        if(e.which===13){
+
+            $("#btnTambah")
+            .click();
+
+        }
+
     });
 
-    let action = document.createElement("div");
+    updateCounter();
 
-    action.appendChild(btnEdit);
-    action.appendChild(btnStatus);
-    action.appendChild(btnHapus);
-
-    listBaru.appendChild(infoTugas);
-    listBaru.appendChild(action);
-
-    daftarTugas.appendChild(listBaru);
-
-    inputTugas.value = "";
-    inputTanggal.value = "";
-    inputStatus.value = "Progress";
 });
-
-
-
-
-
